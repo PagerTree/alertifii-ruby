@@ -30,7 +30,7 @@ module Alertifii
     # push the configured message to alertifii.
     #   @return [Response] response for the receipt request
     def push
-      %i[token user message].each { |param| raise "#{param} must be supplied" unless send param }
+      %i[token message].each { |param| raise "#{param} must be supplied" unless send param }
 
       Response.create_from_excon_response Excon.post(path: '1/messages.json', query: to_h)
     end
